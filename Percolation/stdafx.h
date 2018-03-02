@@ -10,6 +10,7 @@
 #include <stdio.h>
 #include <tchar.h>
 #include <vector>
+#include <iostream>
 
 #include "Percolator.h"
 #include "WeightedUF.h"
