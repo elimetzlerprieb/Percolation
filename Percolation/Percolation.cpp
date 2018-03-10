@@ -8,6 +8,11 @@ int main()
 {
 	Percolator percolator(10);
 
+	percolator.simulate();
+
+	//percolator.outputGridToConsole();
+
+	/*
 	WeightedUF weightedUF(20);
 	weightedUF.join(0, 1);
 	weightedUF.join(2, 3);
@@ -29,7 +34,7 @@ int main()
 	{
 		std::cout << i << "," << weightedUF.nodes[i] << "," << weightedUF.depth[i] << std::endl;
 	}
-
+	*/
 	int get_input = 0;
 	std::cin >> get_input;
 

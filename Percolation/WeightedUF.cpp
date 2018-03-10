@@ -1,18 +1,19 @@
 #include "stdafx.h"
 
-WeightedUF::WeightedUF(int input_size) : nodes(input_size, 0), depth(input_size, 0)
+WeightedUF::WeightedUF(int input_size) : nodes(input_size, 0), size(input_size, 0)
 {
 	for (int i = 0; i < input_size; i++)
 	{
 		nodes[i] = i;
-		depth[i] = 0;
+		size[i] = 1;
 	}
 }
 
 int WeightedUF::root(int p)
 {
-	while (nodes[p] != p)
+	while (p != nodes[p])
 	{
+		//nodes[p] = nodes[nodes[p]];
 		p = nodes[p];
 	}
 	return p;
@@ -20,24 +21,29 @@ int WeightedUF::root(int p)
 
 void WeightedUF::join(int p, int q)
 {
-	int i = root(p);
-	int j = root(q);
-
-	if (depth[p] < depth[q])
+	int a = root(p);
+	int b = root(q);
+	
+	if (a == b)
 	{
-		nodes[q] = i;
-		depth[q]++;
+		return;
 	}
-	else if (depth[q] >= depth[p])
+
+	if (size[a] < size[b])
 	{
-		nodes[p] = j;
-		depth[p]++;
+		nodes[a] = b;
+		size[b] += size[a];
+	}
+	else if (size[a] >= size[b])
+	{
+		nodes[b] = a;
+		size[a] += b;
 	}
 }
 
 bool WeightedUF::connected(int p, int q)
 {
-	if (nodes[p] == nodes[q])
+	if (root(p) == root(q))
 	{
 		return true;
 	}
