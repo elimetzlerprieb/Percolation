@@ -6,8 +6,26 @@
 
 int main()
 {
-	Percolator percolator(10);
+	//PercolatorStats percolatorStats;
 
+	//percolatorStats.run(10, 3);
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	Percolator percolator(10);
+	percolator.simulate();
+
+	//Percolator percolator(10);
 	percolator.simulate();
 
 	//percolator.outputGridToConsole();

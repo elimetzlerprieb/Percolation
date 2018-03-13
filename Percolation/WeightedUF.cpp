@@ -9,6 +9,15 @@ WeightedUF::WeightedUF(int input_size) : nodes(input_size, 0), size(input_size, 
 	}
 }
 
+void WeightedUF::reset()
+{
+	for (int i = 0; i < size.size(); i++)
+	{
+		nodes[i] = i;
+		size[i] = 1;
+	}
+}
+
 int WeightedUF::root(int p)
 {
 	while (p != nodes[p])

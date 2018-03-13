@@ -6,6 +6,12 @@ class Percolator
 public:
 	Percolator(int size);
 
+	int simulate();
+	bool runNSimulations(int n);
+
+	void outputGridToConsole();
+
+private:
 	int size;
 	int top;
 	int bottom;
@@ -14,23 +20,18 @@ public:
 
 	int openedSites;
 
-	int convertCoordinatesToGridIndex(int row, int column); 
+	int convertCoordinatesToGridIndex(int row, int column);
 
 	void openSite(int row, int column);
 	void openSite(int index);
-	
+
 	void joinSiteToAdjacentOpenSites(int row, int column);
 	void joinSiteToAdjacentOpenSites(int index);
 
 	bool isSiteOpen(int row, int column);
 	bool isSiteOpen(int index);
 
-	bool simulate();
-
-	void outputGridToConsole();
-
-private:
-
+	void reset();
 };
 
 

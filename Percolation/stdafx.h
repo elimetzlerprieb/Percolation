@@ -14,5 +14,6 @@
 
 #include "Percolator.h"
 #include "WeightedUF.h"
+#include "PercolatorStats.h"
 
 // TODO: reference additional headers your program requires here

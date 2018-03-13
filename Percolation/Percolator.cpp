@@ -9,6 +9,20 @@ Percolator::Percolator(int input_size) : grid(input_size * input_size, 1), weigh
 	openedSites = 0;
 }
 
+void Percolator::reset()
+{
+	for (int i = 0; i < (size * size); i++)
+	{
+		grid[i] = 1;
+	}
+
+	openedSites = 0;
+
+	weightedUF.reset();
+}
+
+
+
 int Percolator::convertCoordinatesToGridIndex(int row, int column)
 {
 	return (row * size + column);
@@ -18,6 +32,7 @@ void Percolator::openSite(int row, int column)
 {
 	int index = convertCoordinatesToGridIndex(row, column);
 	openSite(index);
+	return;
 }
 
 void Percolator::outputGridToConsole()
@@ -145,10 +160,11 @@ void Percolator::joinSiteToAdjacentOpenSites(int index)
 }
 
 
-bool Percolator::simulate()
+int Percolator::simulate()
 {
+	this->reset();
+	
 	bool percolated = false;
-	openedSites = 0;
 
 	while (percolated != true)
 	{
@@ -164,7 +180,17 @@ bool Percolator::simulate()
 
 		outputGridToConsole();
 	}
-	return true; 
+	return openedSites; 
+}
+
+bool Percolator::runNSimulations(int n)
+{
+	for (int i = 0; i < n; i++)
+	{
+		simulate();
+	}
+
+	return true;
 }
 
 
