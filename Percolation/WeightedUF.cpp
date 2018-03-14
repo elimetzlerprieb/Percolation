@@ -22,7 +22,7 @@ int WeightedUF::root(int p)
 {
 	while (p != nodes[p])
 	{
-		//nodes[p] = nodes[nodes[p]];
+		nodes[p] = nodes[nodes[p]];
 		p = nodes[p];
 	}
 	return p;

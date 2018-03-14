@@ -14,13 +14,43 @@ void PercolatorStats::run(int size, int trials)
 
 	Percolator percolator(size);
 
-	std::vector<int> sitesOpened(size, 0);
-	
+	std::vector<float> threshold(trials, 0);
+
+	for (int i = 0; i < trials; i++)
+	{	
+		int rc = percolator.simulate();
+		threshold[i] = float(rc) / (size * size);
+	}
+
+	float val = 0.00;
+
 	for (int i = 0; i < trials; i++)
 	{
-		sitesOpened[i] = percolator.simulate();
+		val += threshold[i];
 	}
+	resultsMean = val / trials;
+
+
+	val = 0.00;
+
+	for (int i = 0; i < trials; i++)
+	{
+		val += std::pow((threshold[i] - resultsMean), 2);	
+	}
+	resultsStddev = std::sqrt((val / trials));
+
+
+	val = (1.96 * resultsStddev) / (std::sqrt(trials));
+
+	resultsConfidenceHi = resultsMean + val;
+	resultsConfidenceLo = resultsMean - val; 
 }
+
+void PercolatorStats::calculateStats()
+{
+
+}
+
 
 void PercolatorStats::clearStats()
 {

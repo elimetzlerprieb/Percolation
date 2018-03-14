@@ -12,6 +12,7 @@ public:
 
 private:
 	void clearStats();
+	void calculateStats();
 	double resultsMean;
 	double resultsStddev;
 	double resultsConfidenceLo;

@@ -6,29 +6,19 @@
 
 int main()
 {
-	//PercolatorStats percolatorStats;
-
-	//percolatorStats.run(10, 3);
-
+	PercolatorStats percolatorStats;
+	percolatorStats.run(2, 1000);
 
 
+	std::cout << "Mean:                 " << percolatorStats.mean() << std::endl;
+	std::cout << "Std deviation:        " << percolatorStats.stddev() << std::endl;
+	std::cout << "Confidence interval: [" << percolatorStats.confidenceLo() << "," << percolatorStats.confidenceHi() << "]" << std::endl;
 
 
-
-
-
-
-
-
-
-	
-	Percolator percolator(10);
-	percolator.simulate();
 
 	//Percolator percolator(10);
-	percolator.simulate();
+	//percolator.simulate();
 
-	//percolator.outputGridToConsole();
 
 	/*
 	WeightedUF weightedUF(20);

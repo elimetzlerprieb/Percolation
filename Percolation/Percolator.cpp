@@ -21,8 +21,6 @@ void Percolator::reset()
 	weightedUF.reset();
 }
 
-
-
 int Percolator::convertCoordinatesToGridIndex(int row, int column)
 {
 	return (row * size + column);
@@ -64,7 +62,6 @@ void Percolator::openSite(int index)
 		return; 
 	}
 }
-
 
 bool Percolator::isSiteOpen(int row, int column)
 {
@@ -159,7 +156,6 @@ void Percolator::joinSiteToAdjacentOpenSites(int index)
 	return;
 }
 
-
 int Percolator::simulate()
 {
 	this->reset();
@@ -169,7 +165,7 @@ int Percolator::simulate()
 	while (percolated != true)
 	{
 		// randomly select a site and open it up if it isn't open already 
-		int randomSite = (std::rand() % (size * size)); // pick a random cell 
+		int randomSite = ((std::rand()*std::rand()) % (size * size)); // pick a random cell 
 		openSite(randomSite);
 
 		// check to see if any adjacent sites are already open
@@ -178,7 +174,12 @@ int Percolator::simulate()
 		// check to see if the top and bottom are connected
 		percolated = weightedUF.connected(top, bottom);	
 
-		outputGridToConsole();
+		//outputGridToConsole();
+		int breakpt = 32700;
+		if (openedSites == breakpt)
+		{
+			continue;
+		}
 	}
 	return openedSites; 
 }
